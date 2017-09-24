@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.13",
     "color-claim-sass": "^1.1.0",
     "node-sass": "^4.5.3",
-    "normalize-scss": "^7.0.0"
+    "normalize-scss": "^7.0.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router-dom": "next",
+    "react-scripts": "1.0.13"
   },
   "scripts": {
     "start": "react-scripts start",

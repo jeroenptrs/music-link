@@ -12,6 +12,7 @@
      * 2. Prevent adjustments of font size after orientation changes in
      *    IE on Windows Phone and in iOS.
      */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/css?family=Lato");
 @import url("https://fonts.googleapis.com/css?family=Merriweather");
 html {
@@ -526,9 +527,17 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0; }
 
 h1 {
-  font-size: 64px;
-  margin-bottom: 16px;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1); }
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px; }
+  h1 span {
+    max-height: 64px;
+    font-size: 64px;
+    line-height: 64px; }
+  h1 .material-icons {
+    height: 64px;
+    font-size: 64px;
+    line-height: 64px;
+    transform: translate(0, 8px); }
 
 .mscli-backdrop-container {
   display: none; }
@@ -546,11 +555,19 @@ h1 {
     .mscli-backdrop-container .mscli-backdrop img {
       max-height: 100vh; }
 
+.landingcomponent {
+  max-height: 10000px;
+  transition: max-height .2s ease; }
+  .landingcomponent.hidden {
+    max-height: 1px;
+    overflow: hidden; }
+
 .button-col {
   text-align: right; }
 
 .button {
   margin-top: 32px;
+  cursor: pointer;
   display: inline-block;
   padding: 16px;
   font-size: 32px;
@@ -562,14 +579,15 @@ h1 {
   background-color: #89a4ae;
   border: none;
   border-radius: 10px;
-  box-shadow: 0 4px 0 0 #3C485E, 2px 6px 2px rgba(0, 0, 0, 0.1); }
+  box-shadow: 0 4px 0 0 #3C485E, 2px 6px 2px rgba(0, 0, 0, 0.1);
+  -webkit-transition: box-shadow .5s ease;
+  transition: box-shadow .5s ease; }
 
 .button:hover {
-  background-color: #6a8c9a; }
+  box-shadow: 0 4px 0 0 #3C485E, 4px 8px 4px rgba(0, 0, 0, 0.2); }
 
 .button:active {
   background-color: #3C485E !important;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   transform: translateY(4px); }
 
 input[type=text] {
@@ -583,12 +601,13 @@ input[type=text] {
   color: #3C485E;
   font-size: 32px;
   font-family: 'Merriweather', serif;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out; }
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; }
 
 input[type=text]:focus {
-  border: 2px solid #6a8c9a;
-  outline: none; }
+  border: 2px solid #55717c;
+  outline: none;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); }
 
 ::-webkit-input-placeholder {
   /* Chrome */

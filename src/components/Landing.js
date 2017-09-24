@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom';
 
-export default class Landing extends Component {
+class Landing extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            hidden: props.location.pathname !== "/"
+        }
+    }
+
+    componentWillReceiveProps(props){
+        this.setState({
+            hidden: props.location.pathname !== "/"
+        })
+    }
+
     render() {
+        console.log(this.state);
         return (
-            <div>
+            <div className={this.state.hidden ? "landingcomponent hidden" : "landingcomponent"}>
                 <p>
-                    Do you like sharing your new favorite album with your friends, but they don’t use the same streaming platform as you?
+                    Do you want to share albums you love, but your friends don’t use the same streaming platform as you?
                 </p>
                 <p>
                     This site creates a <span className="highlight">link</span> to several <span className="highlight">music</span> platforms such as Spotify, Deezer, Apple Music and iTunes.
@@ -19,10 +34,12 @@ export default class Landing extends Component {
                         <input type="text" id="albumname" name="album" placeholder="Album"/>
                     </div>
                     <div className="col-auto button-col">
-                        <button className="button">Create a music link</button>
+                        <Link to="/test" className="button">Create a music link</Link>
                     </div>
                 </div>
             </div>
         );
     }
 }
+
+export default withRouter(Landing);
