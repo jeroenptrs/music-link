@@ -1,0 +1,28 @@
+//  Breakpoints, set custom m, l and xl breakpoints here.
+$_breakpoints: (
+    m :  480px,
+    l :  768px,
+    xl: 1024px
+);
+
+//  Grid, set custom child_name, max # of children and their gutter here.
+//  If you plan on using the grid, you can also add breakpoints: $_breakpoints.
+//  Grid will set them up for you.
+$_outline: (
+    child_name: "ctr",
+    max: 2,
+    gutter: 1px,
+    flex: true
+);
+
+$_grid: (
+        child_name: "col",
+        max: 2,
+        gutter: 32px,
+        flex: false
+);
+
+//  Container, set the container width and (optionally) the max-width.
+$_container: (
+    width: 82%
+);

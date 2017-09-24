@@ -1,0 +1,146 @@
+@import "consensass";
+
+//  Fonts config
+@include import_google_fonts((
+        'https://fonts.googleapis.com/css?family=Lato',
+        'https://fonts.googleapis.com/css?family=Merriweather'
+));
+
+//  Set up breakpoints
+@include breakpoints();
+
+body{
+  background-color: #f8f8f8;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+//  Outline = divider between big image and components
+.outline{
+  @include grid($_outline);
+}
+
+
+//  grid class will be our grid
+.grid{
+    margin-top: 64px;
+    @include grid($_grid);
+}
+
+.container{
+    @include container($_container);
+  padding-top: calc(9%);
+}
+
+p{
+  color: darken(color-claim(39, "bg"), 10%);
+  font-family: 'Merriweather', serif;
+  font-size: 32px;
+  line-height: 40px;
+  margin: 0;
+
+  .highlight{
+    color: color-claim(40, "bg");
+  }
+}
+
+p+p{
+  padding-top: 16px;
+}
+
+h1, h2, h3, h4, h5, h6{
+  color: color-claim(40, "bg");
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+}
+
+h1{ font-size: 64px; margin-bottom: 16px; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1); }
+
+.mscli-backdrop-container{
+  display: none;
+
+  @media(min-width: $l){
+    display: block;
+  }
+
+  .mscli-backdrop {
+    height: 100vh;
+    max-width: 50vw;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    overflow: hidden;
+    direction: rtl;
+
+    img {
+      max-height: 100vh;
+    }
+  }
+}
+
+.button-col{ text-align: right; }
+
+.button{
+  margin-top: 32px;
+
+  display: inline-block;
+  padding: 16px;
+  font-size: 32px;
+  font-family: 'Merriweather', serif;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #f8f8f8;
+  background-color: darken(color-claim(39, "bg"), 10%);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 0 0 color-claim(40, "bg"), 2px 6px 2px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover{ background-color: darken(color-claim(39, "bg"), 20%); }
+.button:active{
+  @include color-claim(40, "bg");
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  transform: translateY(4px);
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+
+  border: 2px solid darken(color-claim(39, "bg"), 10%);
+  border-radius: 10px;
+
+  background-color: #f8f8f8;
+  color: color-claim(40, "bg");
+
+  font-size: 32px;
+  font-family: 'Merriweather', serif;
+
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  border: 2px solid darken(color-claim(39, "bg"), 20%);
+  outline: none;
+}
+
+::-webkit-input-placeholder { /* Chrome */
+  color: darken(color-claim(39, "bg"), 10%);
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: darken(color-claim(39, "bg"), 10%);
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: darken(color-claim(39, "bg"), 10%);
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: darken(color-claim(39, "bg"), 10%);
+  opacity: 1;
+}

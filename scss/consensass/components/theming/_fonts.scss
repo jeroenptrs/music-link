@@ -1,0 +1,6 @@
+//  Feed an array of strings (that are Google Fonts urls) to this mixin to import all fonts.
+@mixin import_google_fonts($_f){
+  @each $font in $_f {
+    @import url($font);
+  }
+}

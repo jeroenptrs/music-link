@@ -1,0 +1,101 @@
+@mixin grid($_g: ()){
+    //  Grid comes with a few defaults: a grid of 16 childs named "col", each with a gutter of 16px.
+    //  You can optionally set your breakpoints here, just pass the variable as the fourth element of the map.
+    //  If you want to set your own values, you can pass them in the mixin.
+    //  If you only want to set custom breakpoints, use the breakpoints mixin.
+    $child_name: "col" !default;
+    $max: 8 !default;
+    $gutter: 16px !default;
+    $_b: false !default;
+    $_flex: true !default;
+
+    //  Check for $_g's values, then set them.
+    @if map-has-key($_g, child_name){
+        $child_name: map-get($_g, child_name);
+    }
+    @if map-has-key($_g, max){
+        $max: map-get($_g, max);
+    }
+    @if map-has-key($_g, gutter){
+        $gutter: map-get($_g, gutter);
+    }
+    @if map-has-key($_g, breakpoints){
+        $_b: map-get($_g, breakpoints);
+    }
+    @if map-has-key($_g, flex){
+        $_flex: map-get($_g, flex);
+    }
+
+    //  First check if breakpoints need to be set.
+    @if $_b != false{
+        @include breakpoints($_b);
+    }
+
+    //  Clear view so columns stick in their respective grid.
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    margin-left: -1 * $gutter;
+
+    //initialize grid
+    [class^="#{$child_name}"]{
+        box-sizing: border-box;
+        vertical-align: top;
+        
+        margin-left: $gutter;
+        min-height: 1px;
+        width: calc(100% - #{$gutter});
+
+        @if $_flex == false{
+            float: left;
+        }
+    }
+
+    @if $_flex == true{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .#{$child_name}-auto{
+            width: auto;
+            flex: 1;
+        }
+    }
+
+    //set s values
+    @for $c from 1 through $max {
+        [class^="#{$child_name}"][class*="-s-#{$c}"] {
+            width: calc(#{percentage($c / $max)} - #{$gutter});
+        }
+    }
+
+    //set m values
+    @media(min-width: $m){
+        @for $c from 1 through $max {
+            [class^="#{$child_name}"][class*="-m-#{$c}"] {
+                width: calc(#{percentage($c / $max)} - #{$gutter});
+            }
+        }
+    }
+
+    //set l values
+    @media(min-width: $l){
+        @for $c from 1 through $max {
+            [class^="#{$child_name}"][class*="-l-#{$c}"] {
+                width: calc(#{percentage($c / $max)} - #{$gutter});
+            }
+        }
+    }
+
+    //set xl values
+    @media(min-width: $xl){
+        @for $c from 1 through $max {
+            [class^="#{$child_name}"][class*="-xl-#{$c}"] {
+                width: calc(#{percentage($c / $max)} - #{$gutter});
+            }
+        }
+    }
+}

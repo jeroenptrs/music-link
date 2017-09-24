@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/*
+**  External Setup Variables
+*/
+
+//  color-claim-sass
+$_silent: true;
+
+/*
+**  Configuration
+*/
+
+//  External packages
+@import "../node_modules/normalize-scss/sass/normalize/import-now";
+@import "../node_modules/color-claim-sass/color-claim";
+//  Concensass Setup Variables
+@import "consensass/setup";
+//  Concensass Mixins
+@import "consensass/components/grid";
+@import "consensass/components/theming";

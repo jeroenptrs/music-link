@@ -1,0 +1,21 @@
+{
+  "name": "mscli",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-scripts": "1.0.13",
+    "color-claim-sass": "^1.1.0",
+    "node-sass": "^4.5.3",
+    "normalize-scss": "^7.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "compile-scss": "node-sass --include-path scss scss/index.scss src/index.css",
+    "watch-scss": "nodemon -e scss -x \"npm run compile-scss\""
+  }
+}

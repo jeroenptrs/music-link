@@ -1,0 +1,53 @@
+@mixin breakpoints($_b: ()){
+    //  SASS doesn't allow to dynamic variable names, so I'll stick with 3 breakpoints right now.
+    //  Grid uses s, m, l and xl. Those last three have defined breakpoints, s is basically min-width: 0px.
+    //  You can set custom breakpoints in $_breakpoints or pass a different variable with a breakpoints map.
+    //  If you're feeling extra adventurous, you can set it in the @include. Best practice is a separate var.
+
+    //  If none are set, there's always the fallback breakpoint defaults.
+    $m: 480px !global !default;
+    $l: 768px !global !default;
+    $xl: 1024px !global !default;
+
+    @if length($_b) > 0 {
+
+        //  If m breakpoint is defined in $_b, set $m to that value.
+        @if map-has-key($_b, m){
+            $m: map-get($_b, m) !global;
+        }
+
+        //  If l breakpoint is defined in $_b, set $l to that value.
+        @if map-has-key($_b, l){
+            $l: map-get($_b, l) !global;
+        }
+        
+        //  If xl breakpoint is defined in $_b, set $xl to that value.
+        @if map-has-key($_b, xl){
+            $xl: map-get($_b, xl) !global;
+        }
+    }
+
+    @media(max-width: ($m - 1)){
+        .hide[class*="-s"]{
+            display: none;
+        }
+    }
+
+    @media(min-width: $m) and (max-width: ($l - 1)){
+        .hide[class*="-m"]{
+            display: none;
+        }
+    }
+
+    @media(min-width: $l) and (max-width: ($xl - 1)){
+        .hide[class*="-l"]{
+            display: none;
+        }
+    }
+
+    @media(min-width: $xl){
+        .hide[class*="-xl"]{
+            display: none;
+        }
+    }
+}

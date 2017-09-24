@@ -1,0 +1,15 @@
+@mixin container($_c: ()){
+    //  Set default value for width.
+    //  max-width should be an optional parameter.
+    $width: 90% !default;
+
+    @if map-has-key($_c, width){
+        $width: map-get($_c, width);
+    }
+    @if map-has-key($_c, max-width){
+        max-width: map-get($_c, child_name);
+    }
+
+    margin: 0 auto;
+    width: $width;
+}
