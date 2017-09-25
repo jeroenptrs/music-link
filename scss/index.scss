@@ -97,13 +97,14 @@ h1{
   }
 }
 
-.landingcomponent{
-  max-height: 10000px;
-  transition: max-height .2s ease;
+.error-col{
+  text-align: center;
+  margin-bottom: 16px;
 
-  &.hidden {
-    max-height: 1px;
-    overflow: hidden;
+  p {
+    color: #E54B4B;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
   }
 }
 

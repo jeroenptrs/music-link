@@ -555,12 +555,13 @@ h1 {
     .mscli-backdrop-container .mscli-backdrop img {
       max-height: 100vh; }
 
-.landingcomponent {
-  max-height: 10000px;
-  transition: max-height .2s ease; }
-  .landingcomponent.hidden {
-    max-height: 1px;
-    overflow: hidden; }
+.error-col {
+  text-align: center;
+  margin-bottom: 16px; }
+  .error-col p {
+    color: #E54B4B;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px; }
 
 .button-col {
   text-align: right; }
