@@ -55,9 +55,9 @@ class Landing extends Component {
                 </p>
 
                 <div className="grid">
-                    {this.state.err !== false && <div className="col-s-2 error-col">
-                        <p>{this.state.err}</p>
-                    </div>}
+                    <div className="col-s-2 error-col">
+                        {this.state.err !== false ? <p>{this.state.err}</p> : <p>&nbsp;</p>}
+                    </div>
                     <div className="col-s-1">
                         <input type="text" id="artistname" name="artist" placeholder="Artist" value={this.state.artist} onChange={this.onTypeArtist.bind(this)} />
                     </div>

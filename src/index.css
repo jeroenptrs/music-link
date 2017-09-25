@@ -471,7 +471,7 @@ body {
       width: calc(100% - 1px); } }
 
 .grid {
-  margin-top: 64px;
+  margin-top: 48px;
   margin-left: -32px; }
   .grid:after {
     content: "";
@@ -556,8 +556,8 @@ h1 {
       max-height: 100vh; }
 
 .error-col {
-  text-align: center;
-  margin-bottom: 16px; }
+  min-height: 24px;
+  text-align: center; }
   .error-col p {
     color: #E54B4B;
     font-family: 'Lato', sans-serif;
