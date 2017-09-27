@@ -18,6 +18,7 @@
     "eject": "react-scripts eject",
     "compile-scss": "node-sass --include-path scss scss/index.scss src/index.css",
     "watch-scss": "nodemon -e scss -x \"npm run compile-scss\"",
-    "webtask": "wt update genericApi ./webtasks/genericApi.js"
+    "webtask": "wt update genericApi ./webtasks/genericApi.js",
+    "watch-webtask": "nodemon --watch webtasks -x \"npm run webtask\""
   }
 }

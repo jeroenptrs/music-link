@@ -1,27 +1,29 @@
 var rp = require('request-promise');
 
 module.exports = function(context, cb) {
-    switch (context.body.type){
-        case 'spotify':
-            return new Promise((resolve, reject) => {
-                spotifyApi(context.body.artist, context.body.album, context)
-                    .then((result) => {
-                        resolve(cb(null, {spotify: result}));
-                    })
-                    .catch((err) => {
-                        reject(cb(err));
-                    });
-            });
-            break;
-        case 'deezer':
-            cb(null, {err: "This API type is not yet supported."});
-            break;
-        case 'apple':
-            cb(null, {err: "This API type is not yet supported."});
-            break;
-        default:
-            cb({err: "Unknown API type."});
-    }
+    if((context.body.type != null && context.body.artist != null && context.body.album != null) && (context.body.type.length > 0 && context.body.artist.length > 0 && context.body.album.length > 0))
+        switch (context.body.type){
+            case 'spotify':
+                return new Promise((resolve, reject) => {
+                    spotifyApi(context.body.artist, context.body.album, context)
+                        .then((result) => {
+                            resolve(cb(null, {spotify: result}));
+                        })
+                        .catch((err) => {
+                            reject(cb(err));
+                        });
+                });
+                break;
+            case 'deezer':
+                cb(null, {err: "This API type is not yet supported."});
+                break;
+            case 'apple':
+                cb(null, {err: "This API type is not yet supported."});
+                break;
+            default:
+                cb({err: "Unknown API type."});
+        }
+    else cb({err: "Unknown API type."});
 };
 
 function spotifyApi(artist, album, context){
