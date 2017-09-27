@@ -1,6 +1,30 @@
 var rp = require('request-promise');
 
 module.exports = function(context, cb) {
+    switch (context.body.type){
+        case 'spotify':
+            return new Promise((resolve, reject) => {
+                spotifyApi(context.body.artist, context.body.album, context)
+                    .then((result) => {
+                        resolve(cb(null, {spotify: result}));
+                    })
+                    .catch((err) => {
+                        reject(cb(err));
+                    });
+            });
+            break;
+        case 'deezer':
+            cb(null, {err: "This API type is not yet supported."});
+            break;
+        case 'apple':
+            cb(null, {err: "This API type is not yet supported."});
+            break;
+        default:
+            cb({err: "Unknown API type."});
+    }
+};
+
+function spotifyApi(artist, album, context){
     /** SPOTIFY API: Lessons learned.
      * May 29th: Spotify moved from open API to requiring authentication for every request.
      * Make sure you have a client ID and Secret (so register as developer and register your application.
@@ -12,12 +36,12 @@ module.exports = function(context, cb) {
      * ideally with every call. Once you've received a token, you can add this in the header of your actual API call.
      */
 
-    var url = 'https://api.spotify.com/v1/search?q=artist:"' + context.body.artist + '"+album:"' + context.body.album + '"&type=album',
+    var url = 'https://api.spotify.com/v1/search?q=artist:"' + artist + '"+album:"' + album + '"&type=album',
         spotify_id = context.secrets.SPOTIFY_CLIENT_ID,
         spotify_secret = context.secrets.SPOTIFY_CLIENT_SECRET,
         encodedString = new Buffer(spotify_id + ':' + spotify_secret).toString('base64');
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         var options = {
             method: 'POST',
             uri: 'https://accounts.spotify.com/api/token',
@@ -39,11 +63,10 @@ module.exports = function(context, cb) {
                 };
 
             rp(options).then((response) => {
-                console.log(response);
-                resolve(cb(null, {spotify: response}));
-            }).catch((err) => { resolve(cb(err)); });
+                resolve(response);
+            }).catch((err) => { reject(err); });
         }).catch((err) => {
-            resolve(cb(err));
+            reject(err);
         });
     });
-};
+}

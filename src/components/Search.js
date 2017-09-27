@@ -7,17 +7,20 @@ class Search extends Component {
         this.state = {
             spotify: false,
             deezer: false,
-            applemusic: false,
-            itunes: false
+            apple: false
         }
     }
 
     componentWillMount(){
         console.log(this.props.match.params);
         this.fetchAPI('spotify');
+        this.fetchAPI('deezer');
+        this.fetchAPI('apple');
     }
 
     async fetchAPI(type){
+        let state = this.state;
+
         try{
             let r = await fetch('https://wt-d16d4ed13fb086ca4bb3643449c8f6c4-0.run.webtask.io/genericApi', {
                 method: 'POST',
@@ -32,23 +35,32 @@ class Search extends Component {
             });
 
             r = await r.json();
-            this.setState({
-               spotify: r.spotify,
-            });
-            console.log(r);
+            state[type] = r[type];
+            this.setState(state);
         }
         catch(error){ console.log(error); }
     }
 
     render(){
+        console.log(this.state);
         return(
-            <div>
+            <ul>
                 {this.state.spotify ?
-                    <small>API correctly loaded</small>
+                    <li>Spotify API correctly loaded</li>
                     :
-                    <small>Loading ...</small>
+                    <li>Loading Spotify API ...</li>
                 }
-            </div>
+                {this.state.deezer ?
+                    <li>Deezer API correctly loaded</li>
+                    :
+                    <li>Loading Deezer API ...</li>
+                }
+                {this.state.apple ?
+                    <li>Apple API correctly loaded</li>
+                    :
+                    <li>Loading Apple API ...</li>
+                }
+            </ul>
         )
     }
 }
