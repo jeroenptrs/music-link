@@ -25,6 +25,8 @@ class Search extends Component {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    artist: this.props.match.params.artist,
+                    album: this.props.match.params.album,
                     type: type
                 })
             });

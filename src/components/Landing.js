@@ -19,7 +19,7 @@ class Landing extends Component {
         state.artist = event.target.value;
 
         if(this.state.album !== '')
-            state.url = "/" + this.trimForUrl(event.target.value) + "/" + this.trimForUrl(this.state.album);
+            state.url = "/" + event.target.value + "/" + this.state.album;
 
         this.setState(state);
     }
@@ -30,7 +30,7 @@ class Landing extends Component {
         state.album = event.target.value;
 
         if(this.state.artist !== '')
-            state.url = "/" + this.trimForUrl(this.state.artist) + "/" + this.trimForUrl(event.target.value);
+            state.url = "/" + this.state.artist + "/" + event.target.value;
 
         this.setState(state);
     }
@@ -40,9 +40,9 @@ class Landing extends Component {
             this.setState({err: 'Please enter both an artist and album name.'});
     }
 
-    trimForUrl(s){
+    /*trimForUrl(s){
         return s.toLowerCase().replace(" ", "");
-    }
+    }*/
 
     render() {
         return (
