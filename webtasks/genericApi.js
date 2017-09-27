@@ -5,7 +5,11 @@ module.exports = function(context, cb) {
      * May 29th: Spotify moved from open API to requiring authentication for every request.
      * Make sure you have a client ID and Secret (so register as developer and register your application.
      * Don't forget to use 'Content-Type':'application/x-www-form-urlencoded' as typing for the authorization flow.
-     * Otherwise you'll end up with 415 status code errors.
+     * Otherwise you'll end up with 415 status code errors. And id:secret needs to be encoded in Base64.
+     *
+     * The Client Credentials Flow (https://developer.spotify.com/web-api/authorization-guide/#client-credentials-flow)
+     * This will use your ID and Secret to create a TEMPORARY access token, so this function needs to be regenerated,
+     * ideally with every call. Once you've received a token, you can add this in the header of your actual API call.
      */
 
     var url = 'https://api.spotify.com/v1/search?q=artist:"' + context.body.artist + '"+album:"' + context.body.album + '"&type=album',
