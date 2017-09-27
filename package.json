@@ -17,6 +17,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "compile-scss": "node-sass --include-path scss scss/index.scss src/index.css",
-    "watch-scss": "nodemon -e scss -x \"npm run compile-scss\""
+    "watch-scss": "nodemon -e scss -x \"npm run compile-scss\"",
+    "webtask": "wt update genericApi ./webtasks/genericApi.js"
   }
 }
