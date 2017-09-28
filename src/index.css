@@ -785,8 +785,8 @@ hr {
       box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
       -webkit-transition: box-shadow .5s ease;
       transition: box-shadow .5s ease;
-      background-color: #89a4ae; }
+      background-color: #343736; }
       [class^="album-s-"] .listen-button-wrapper .listen-button:hover {
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); }
       [class^="album-s-"] .listen-button-wrapper .listen-button:active {
-        background-color: #3C485E !important; }
+        background-color: #1B1D1C !important; }

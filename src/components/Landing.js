@@ -18,10 +18,10 @@ class Landing extends Component {
 
         state.artist = event.target.value;
 
-        if(this.state.album !== '')
+        if(this.state.album.length > 0 && event.target.value.length > 0)
             state.url = "/" + event.target.value + "/" + this.state.album;
-
-        this.setState(state);
+        else
+            state.url = '';
     }
 
     onTypeAlbum(event) {
@@ -29,15 +29,16 @@ class Landing extends Component {
 
         state.album = event.target.value;
 
-        if(this.state.artist !== '')
+        if(this.state.artist.length > 0 && event.target.value.length > 0)
             state.url = "/" + this.state.artist + "/" + event.target.value;
-
-        this.setState(state);
+        else
+            state.url = '';
     }
 
     onClickSearch(){
-        if (this.state.artist === '' || this.state.album === '')
+        if (this.state.artist.length === 0 || this.state.album.length === 0)
             this.setState({err: 'Please enter both an artist and album name.'});
+        else this.setState({err: false});
     }
 
     render() {

@@ -253,14 +253,14 @@ hr{
       -webkit-transition: box-shadow .5s ease;
       transition: box-shadow .5s ease;
 
-      background-color: darken(color-claim(39, "bg"), 10%);
+      background-color: lighten(color-claim(31, "bg"), 10%);
 
       &:hover {
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
       }
 
       &:active {
-        @include color-claim(40, "bg");
+        @include color-claim(31, "bg");
       }
     }
   }

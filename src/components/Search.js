@@ -9,8 +9,7 @@ class Search extends Component {
             spotify: false,
             deezer: false,
             apple: false
-        }
-        console.log(pj);
+        };
     }
 
     componentWillMount(){
@@ -45,12 +44,11 @@ class Search extends Component {
     render(){
         const { spotify, deezer, apple } = this.state;
         let formattedSpotify = this.renderAlbums(spotify);
-        console.log(deezer);
 
         return(
             <div className="grid">
                 <div className="col-s-2 streaming-title">
-                    <img src="/assets/spotify_logo.png" />
+                    <img src="/assets/spotify_logo.png" alt="Spotify" />
                     <hr/>
                 </div>
                 <div className="col-s-2">
@@ -61,7 +59,7 @@ class Search extends Component {
                     }
                 </div>
                 <div className="col-s-2 streaming-title">
-                    <img src="/assets/deezer_logo.png" />
+                    <img src="/assets/deezer_logo.png" alt="Deezer" />
                     <hr/>
                 </div>
                 <div className="col-s-2">
@@ -72,11 +70,11 @@ class Search extends Component {
                     }
                 </div>
                 <div className="col-s-2 streaming-title">
-                    <img src="/assets/applemusic_logo.png" />
+                    <img src="/assets/applemusic_logo.png" alt="Apple Music" />
                     <hr/>
                 </div>
                 <div className="col-s-2">
-                    {deezer !== false ?
+                    {apple !== false ?
                         <p className="loading">Apple Music coming soon!</p>
                         :
                         <p className="loading">Loading Apple Music results...</p>
@@ -90,7 +88,7 @@ class Search extends Component {
         if(albums){
             return albums.map((album) =>
                     <div className="album-s-6-m-3-xl-2" key={album.id}>
-                        <img src={album.images[0].url} />
+                        <img src={album.images[0].url} alt="Album Artwork" />
                         <span className="info">
                             <strong>{album.name}</strong>
                             <br/>by <strong>{album.artists[0].name}</strong>
