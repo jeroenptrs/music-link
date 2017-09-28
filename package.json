@@ -20,5 +20,6 @@
     "watch-scss": "nodemon -e scss -x \"npm run compile-scss\"",
     "webtask": "wt update genericApi ./webtasks/genericApi.js",
     "watch-webtask": "nodemon --watch webtasks -x \"npm run webtask\""
-  }
+  },
+  "genericApi": "https://wt-d16d4ed13fb086ca4bb3643449c8f6c4-0.run.webtask.io/"
 }

@@ -761,29 +761,32 @@ hr {
     font-size: 16px;
     color: #1B1D1C;
     font-family: 'Lato', sans-serif;
-    margin-bottom: 16px; }
+    margin-bottom: 24px; }
     [class^="album-s-"] .info .artist-title .album-title {
       font-weight: bold; }
-  [class^="album-s-"] .listen-button {
-    cursor: pointer;
+  [class^="album-s-"] .listen-button-wrapper {
     width: 100%;
-    max-width: 320px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 500px;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: 'Lato', sans-serif;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #f8f8f8;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-    -webkit-transition: box-shadow .5s ease;
-    transition: box-shadow .5s ease;
-    background-color: #89a4ae; }
-    [class^="album-s-"] .listen-button:hover {
-      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); }
-    [class^="album-s-"] .listen-button:active {
-      background-color: #3C485E !important; }
+    text-align: center; }
+    [class^="album-s-"] .listen-button-wrapper .listen-button {
+      cursor: pointer;
+      width: 100%;
+      max-width: 320px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 500px;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: 'Lato', sans-serif;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      color: #f8f8f8;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+      -webkit-transition: box-shadow .5s ease;
+      transition: box-shadow .5s ease;
+      background-color: #89a4ae; }
+      [class^="album-s-"] .listen-button-wrapper .listen-button:hover {
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); }
+      [class^="album-s-"] .listen-button-wrapper .listen-button:active {
+        background-color: #3C485E !important; }

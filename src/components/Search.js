@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import * as pj from '../../package.json';
 
 class Search extends Component {
     constructor(props){
@@ -9,6 +10,7 @@ class Search extends Component {
             deezer: false,
             apple: false
         }
+        console.log(pj);
     }
 
     componentWillMount(){
@@ -21,7 +23,7 @@ class Search extends Component {
         let state = this.state;
 
         try{
-            let r = await fetch('https://wt-d16d4ed13fb086ca4bb3643449c8f6c4-0.run.webtask.io/genericApi', {
+            let r = await fetch(pj.genericApi + 'genericApi', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,7 +95,9 @@ class Search extends Component {
                             <strong>{album.name}</strong>
                             <br/>by <strong>{album.artists[0].name}</strong>
                         </span>
-                        <button className="listen-button" onClick={(e) => {window.location.href = album.external_urls.spotify}}>LISTEN</button>
+                        <div className="listen-button-wrapper">
+                            <button className="listen-button" onClick={(e) => {window.location.href = album.external_urls.spotify}}>LISTEN</button>
+                        </div>
                     </div>
                 );
         }

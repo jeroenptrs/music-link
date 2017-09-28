@@ -222,41 +222,46 @@ hr{
     font-size: 16px;
     color: color-claim(31, "bg");
     font-family: 'Lato', sans-serif;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 
     .artist-title .album-title{
       font-weight: bold;
     }
   }
-  .listen-button{
-    cursor: pointer;
+  .listen-button-wrapper {
     width: 100%;
-    max-width: 320px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 500px;
-
-    display: inline-block;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: 'Lato', sans-serif;
     text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #f8f8f8;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
 
-    -webkit-transition: box-shadow .5s ease;
-    transition: box-shadow .5s ease;
+    .listen-button {
+      cursor: pointer;
+      width: 100%;
+      max-width: 320px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 500px;
 
-    background-color: darken(color-claim(39, "bg"), 10%);
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: 'Lato', sans-serif;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      color: #f8f8f8;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
 
-    &:hover{
-      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
-    }
+      -webkit-transition: box-shadow .5s ease;
+      transition: box-shadow .5s ease;
 
-    &:active{
-      @include color-claim(40, "bg");
+      background-color: darken(color-claim(39, "bg"), 10%);
+
+      &:hover {
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      &:active {
+        @include color-claim(40, "bg");
+      }
     }
   }
 }
