@@ -12,7 +12,6 @@ class Search extends Component {
     }
 
     componentWillMount(){
-        console.log(this.props.match.params);
         this.fetchAPI('spotify');
         this.fetchAPI('deezer');
         this.fetchAPI('apple');
@@ -42,27 +41,64 @@ class Search extends Component {
     }
 
     render(){
-        console.log(this.state);
+        const { spotify, deezer, apple } = this.state;
+        let formattedSpotify = this.renderAlbums(spotify);
+        console.log(deezer);
+
         return(
-            <ul>
-                {this.state.spotify ?
-                    <li>Spotify API correctly loaded</li>
-                    :
-                    <li>Loading Spotify API ...</li>
-                }
-                {this.state.deezer ?
-                    <li>Deezer API correctly loaded</li>
-                    :
-                    <li>Loading Deezer API ...</li>
-                }
-                {this.state.apple ?
-                    <li>Apple API correctly loaded</li>
-                    :
-                    <li>Loading Apple API ...</li>
-                }
-            </ul>
+            <div className="grid">
+                <div className="col-s-2 streaming-title">
+                    <img src="/assets/spotify_logo.png" />
+                    <hr/>
+                </div>
+                <div className="col-s-2">
+                    {spotify ?
+                        <div className="album-grid">{formattedSpotify}</div>
+                        :
+                        <p className="loading">Loading Spotify results...</p>
+                    }
+                </div>
+                <div className="col-s-2 streaming-title">
+                    <img src="/assets/deezer_logo.png" />
+                    <hr/>
+                </div>
+                <div className="col-s-2">
+                    {deezer !== false ?
+                        <p className="loading">Deezer coming soon!</p>
+                        :
+                        <p className="loading">Loading Deezer results...</p>
+                    }
+                </div>
+                <div className="col-s-2 streaming-title">
+                    <img src="/assets/applemusic_logo.png" />
+                    <hr/>
+                </div>
+                <div className="col-s-2">
+                    {deezer !== false ?
+                        <p className="loading">Apple Music coming soon!</p>
+                        :
+                        <p className="loading">Loading Apple Music results...</p>
+                    }
+                </div>
+            </div>
         )
     }
+
+    renderAlbums(albums){
+        if(albums){
+            return albums.map((album) =>
+                    <div className="album-s-6-m-3-xl-2" key={album.id}>
+                        <img src={album.images[0].url} />
+                        <span className="info">
+                            <strong>{album.name}</strong>
+                            <br/>by <strong>{album.artists[0].name}</strong>
+                        </span>
+                        <button className="listen-button" onClick={(e) => {window.location.href = album.external_urls.spotify}}>LISTEN</button>
+                    </div>
+                );
+        }
+    }
+
 }
 
 export default withRouter(Search);

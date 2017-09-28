@@ -40,17 +40,11 @@ class Landing extends Component {
             this.setState({err: 'Please enter both an artist and album name.'});
     }
 
-    /*trimForUrl(s){
-        return s.toLowerCase().replace(" ", "");
-    }*/
-
     render() {
         return (
             <div>
                 <p>
-                    Do you want to share albums you love, but your friends don’t use the same streaming platform as you?
-                </p>
-                <p>
+                    Do you want to share albums you love, but your friends don’t use the same streaming platform as you?<br/>
                     This site creates a <span className="highlight">link</span> to several <span className="highlight">music</span> platforms such as Spotify, Deezer, Apple Music and iTunes.
                 </p>
 

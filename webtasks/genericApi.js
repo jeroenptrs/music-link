@@ -7,7 +7,7 @@ module.exports = function(context, cb) {
                 return new Promise((resolve, reject) => {
                     spotifyApi(context.body.artist, context.body.album, context)
                         .then((result) => {
-                            resolve(cb(null, {spotify: result}));
+                            resolve(cb(null, {spotify: result.albums.items}));
                         })
                         .catch((err) => {
                             reject(cb(err));
