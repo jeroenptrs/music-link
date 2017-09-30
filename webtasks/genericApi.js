@@ -1,13 +1,25 @@
 var rp = require('request-promise');
 
+/**
+ * MAPPING ALBUMS
+ * Per album is needed:
+ * id: Album id (specific for each streaming service)
+ * name: Album title/name
+ * artist.name: Album artist name
+ * image: Image url
+ * url: Link to streaming URL
+ * */
+
 module.exports = function(context, cb) {
+    //TODO: put promise around switch, filter out results that don't match artist and album name in extra function.
+
     if((context.body.type != null && context.body.artist != null && context.body.album != null) && (context.body.type.length > 0 && context.body.artist.length > 0 && context.body.album.length > 0))
         switch (context.body.type){
             case 'spotify':
                 return new Promise((resolve, reject) => {
                     spotifyApi(context.body.artist, context.body.album, context)
                         .then((result) => {
-                            resolve(cb(null, {spotify: result.albums.items}));
+                            resolve(cb(null, {spotify: result}));
                         })
                         .catch((err) => {
                             reject(cb(err));
@@ -65,10 +77,20 @@ function spotifyApi(artist, album, context){
                 };
 
             rp(options).then((response) => {
-                resolve(response);
+                var albums = [];
+                response.albums.items.map((album) => {
+                    albums.push({
+                        id: album.id,
+                        name: album.name,
+                        artist: {
+                            name: album.artists[0].name
+                        },
+                        url: album.external_urls.spotify,
+                        image: album.images[0].url
+                    })
+                });
+                resolve(albums);
             }).catch((err) => { reject(err); });
-        }).catch((err) => {
-            reject(err);
-        });
+        }).catch((err) => { reject(err); });
     });
 }

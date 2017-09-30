@@ -22,6 +22,8 @@ class Landing extends Component {
             state.url = "/" + event.target.value + "/" + this.state.album;
         else
             state.url = '';
+
+        this.setState(state);
     }
 
     onTypeAlbum(event) {
@@ -33,6 +35,8 @@ class Landing extends Component {
             state.url = "/" + this.state.artist + "/" + event.target.value;
         else
             state.url = '';
+
+        this.setState(state);
     }
 
     onClickSearch(){

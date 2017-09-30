@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import * as pj from '../../package.json';
+import Album from './Album';
 
 class Search extends Component {
     constructor(props){
@@ -52,7 +53,7 @@ class Search extends Component {
                     <hr/>
                 </div>
                 <div className="col-s-2">
-                    {spotify ?
+                    {spotify !== false ?
                         <div className="album-grid">{formattedSpotify}</div>
                         :
                         <p className="loading">Loading Spotify results...</p>
@@ -87,18 +88,11 @@ class Search extends Component {
     renderAlbums(albums){
         if(albums){
             return albums.map((album) =>
-                    <div className="album-s-6-m-3-xl-2" key={album.id}>
-                        <img src={album.images[0].url} alt="Album Artwork" />
-                        <span className="info">
-                            <strong>{album.name}</strong>
-                            <br/>by <strong>{album.artists[0].name}</strong>
-                        </span>
-                        <div className="listen-button-wrapper">
-                            <button className="listen-button" onClick={(e) => {window.location.href = album.external_urls.spotify}}>LISTEN</button>
-                        </div>
-                    </div>
-                );
+                <Album album={album} key={album.id} />
+            );
         }
+        //TODO: Could not find an album on this service reponse.
+        else return (<div></div>)
     }
 
 }
