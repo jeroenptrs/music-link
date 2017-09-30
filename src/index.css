@@ -437,10 +437,10 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; }
-  @media (max-width: 767px) {
+  @media (max-width: 479px) {
     .outline .hide[class*="-s"] {
       display: none; } }
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 480px) and (max-width: 1023px) {
     .outline .hide[class*="-m"] {
       display: none; } }
   @media (min-width: 1024px) and (max-width: 1439px) {
@@ -466,7 +466,7 @@ body {
     width: calc(50% - 1px); }
   .outline [class^="ctr"][class*="-s-2"] {
     width: calc(100% - 1px); }
-  @media (min-width: 768px) {
+  @media (min-width: 480px) {
     .outline [class^="ctr"][class*="-m-1"] {
       width: calc(50% - 1px); }
     .outline [class^="ctr"][class*="-m-2"] {
@@ -483,12 +483,12 @@ body {
       width: calc(100% - 1px); } }
 
 .grid {
-  margin-top: 32px;
+  margin-top: 16px;
   margin-left: -32px; }
-  @media (max-width: 767px) {
+  @media (max-width: 479px) {
     .grid .hide[class*="-s"] {
       display: none; } }
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 480px) and (max-width: 1023px) {
     .grid .hide[class*="-m"] {
       display: none; } }
   @media (min-width: 1024px) and (max-width: 1439px) {
@@ -512,7 +512,7 @@ body {
     width: calc(50% - 32px); }
   .grid [class^="col"][class*="-s-2"] {
     width: calc(100% - 32px); }
-  @media (min-width: 768px) {
+  @media (min-width: 480px) {
     .grid [class^="col"][class*="-m-1"] {
       width: calc(50% - 32px); }
     .grid [class^="col"][class*="-m-2"] {
@@ -530,11 +530,14 @@ body {
 
 .album-grid {
   margin-top: 32px;
-  margin-left: -16px; }
-  @media (max-width: 767px) {
+  margin-left: -16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+  @media (max-width: 479px) {
     .album-grid .hide[class*="-s"] {
       display: none; } }
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 480px) and (max-width: 1023px) {
     .album-grid .hide[class*="-m"] {
       display: none; } }
   @media (min-width: 1024px) and (max-width: 1439px) {
@@ -552,8 +555,10 @@ body {
     vertical-align: top;
     margin-left: 16px;
     min-height: 1px;
-    width: calc(100% - 16px);
-    float: left; }
+    width: calc(100% - 16px); }
+  .album-grid .album-auto {
+    width: auto;
+    flex: 1; }
   .album-grid [class^="album"][class*="-s-1"] {
     width: calc(16.66667% - 16px); }
   .album-grid [class^="album"][class*="-s-2"] {
@@ -566,7 +571,7 @@ body {
     width: calc(83.33333% - 16px); }
   .album-grid [class^="album"][class*="-s-6"] {
     width: calc(100% - 16px); }
-  @media (min-width: 768px) {
+  @media (min-width: 480px) {
     .album-grid [class^="album"][class*="-m-1"] {
       width: calc(16.66667% - 16px); }
     .album-grid [class^="album"][class*="-m-2"] {
@@ -660,23 +665,24 @@ h1, h2, h3, h4, h5, h6 {
       max-height: 100vh; }
 
 .error-col {
-  min-height: 24px;
+  min-height: 32px;
   text-align: center; }
   .error-col p {
     color: #E54B4B;
     font-family: 'Lato', sans-serif;
-    font-size: 16px; }
+    font-size: 13px;
+    line-height: 32px; }
 
 .button-col {
   text-align: right; }
 
 .button {
-  margin-top: 32px;
+  margin-top: 16px;
   margin-bottom: calc(4.5%);
   cursor: pointer;
   display: inline-block;
   padding: 16px;
-  font-size: 32px;
+  font-size: 24px;
   font-family: 'Merriweather', serif;
   text-align: center;
   text-decoration: none;
@@ -705,7 +711,7 @@ input[type=text] {
   border-radius: 10px;
   background-color: #f8f8f8;
   color: #3C485E;
-  font-size: 32px;
+  font-size: 24px;
   font-family: 'Merriweather', serif;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out; }
@@ -737,6 +743,8 @@ input[type=text]:focus {
   text-align: right; }
   .streaming-title img {
     height: 48px; }
+  .streaming-title.top {
+    margin-top: 16px; }
 
 .loading {
   font-size: 16px;
@@ -790,3 +798,13 @@ hr {
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); }
       [class^="album-s-"] .listen-button-wrapper .listen-button:active {
         background-color: #1B1D1C !important; }
+
+@media (min-width: 1024px) {
+  p, .button, input[type=text] {
+    font-size: 32px; }
+  .button {
+    margin-top: 32px; }
+  .error-col {
+    margin-top: 16px; }
+    .error-col p {
+      font-size: 16px; } }

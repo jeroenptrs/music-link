@@ -24,7 +24,7 @@ body{
 
 //  grid class will be our grid
 .grid{
-    margin-top: 32px;
+    margin-top: 16px;
     @include grid($_grid);
 }
 
@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5, h6{
 .mscli-backdrop-container{
   display: none;
 
-  @media(min-width: $m){
+  @media(min-width: 768px){
     display: block;
   }
 
@@ -107,26 +107,27 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .error-col{
-  min-height: 24px;
+  min-height: 32px;
   text-align: center;
 
   p {
     color: #E54B4B;
     font-family: 'Lato', sans-serif;
-    font-size: 16px;
+    font-size: 13px;
+    line-height: 32px;
   }
 }
 
 .button-col{ text-align: right; }
 
 .button{
-  margin-top: 32px;
+  margin-top: 16px;
   margin-bottom: calc(4.5%);
   cursor: pointer;
 
   display: inline-block;
   padding: 16px;
-  font-size: 32px;
+  font-size: 24px;
   font-family: 'Merriweather', serif;
   text-align: center;
   text-decoration: none;
@@ -160,7 +161,7 @@ input[type=text] {
   background-color: #f8f8f8;
   color: color-claim(40, "bg");
 
-  font-size: 32px;
+  font-size: 24px;
   font-family: 'Merriweather', serif;
 
   -webkit-transition: all 0.5s ease-in-out;
@@ -190,8 +191,13 @@ input[type=text]:focus {
 
 .streaming-title{
   text-align: right;
+
   img{
     height: 48px;
+  }
+
+  &.top{
+    margin-top: 16px;
   }
 }
 
@@ -263,5 +269,23 @@ hr{
         @include color-claim(31, "bg");
       }
     }
+  }
+}
+
+@media(min-width: $l){
+  p, .button, input[type=text]{
+    font-size: 32px;
+  }
+
+  .button{
+    margin-top: 32px;
+  }
+
+  .error-col{
+    p{
+      font-size: 16px;
+    }
+
+    margin-top: 16px;
   }
 }

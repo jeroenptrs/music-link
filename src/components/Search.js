@@ -44,11 +44,16 @@ class Search extends Component {
 
     render(){
         const { spotify, deezer, apple } = this.state;
-        let formattedSpotify = this.renderAlbums(spotify);
+        let formattedSpotify, formattedDeezer, formattedAppleMusic, formattedItunes;
 
+        formattedSpotify = this.renderAlbums(spotify);
+        formattedDeezer = this.renderAlbums(deezer);
+        formattedAppleMusic = this.renderAlbums(apple);
+
+        //TODO: proper loading components!
         return(
             <div className="grid">
-                <div className="col-s-2 streaming-title">
+                <div className="col-s-2 streaming-title top">
                     <img src="/assets/spotify_logo.png" alt="Spotify" />
                     <hr/>
                 </div>
@@ -92,7 +97,7 @@ class Search extends Component {
             );
         }
         //TODO: Could not find an album on this service reponse.
-        else return (<div></div>)
+        else { return (<div></div>); }
     }
 
 }

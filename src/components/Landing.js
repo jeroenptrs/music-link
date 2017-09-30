@@ -10,7 +10,9 @@ class Landing extends Component {
             album: '',
             url: '',
             err: false
-        }
+        };
+
+        this.onKeyUp = this.onKeyUp.bind(this);
     }
 
     onTypeArtist(event) {
@@ -45,11 +47,19 @@ class Landing extends Component {
         else this.setState({err: false});
     }
 
+    onKeyUp(e){
+        if(e.key === 'Enter' && (this.state.artist.length > 0 && this.state.album.length > 0)){
+            this.props.history.push(this.state.url);
+        } else if(e.key === 'Enter') this.onClickSearch();
+    }
+
     render() {
         return (
             <div>
                 <p>
                     Do you want to share albums you love, but your friends don’t use the same streaming platform as you?<br/>
+                </p>
+                <p>
                     This site creates a <span className="highlight">link</span> to several <span className="highlight">music</span> platforms such as Spotify, Deezer, Apple Music and iTunes.
                 </p>
 
@@ -58,10 +68,10 @@ class Landing extends Component {
                         {this.state.err !== false ? <p>{this.state.err}</p> : <p>&nbsp;</p>}
                     </div>
                     <div className="col-s-1">
-                        <input type="text" id="artistname" name="artist" placeholder="Artist" value={this.state.artist} onChange={this.onTypeArtist.bind(this)} />
+                        <input type="text" id="artistname" name="artist" placeholder="Artist" value={this.state.artist} onChange={this.onTypeArtist.bind(this)} onKeyUp={(e) => this.onKeyUp(e)} />
                     </div>
                     <div className="col-s-1">
-                        <input type="text" id="albumname" name="album" placeholder="Album" value={this.state.album} onChange={this.onTypeAlbum.bind(this)} />
+                        <input type="text" id="albumname" name="album" placeholder="Album" value={this.state.album} onChange={this.onTypeAlbum.bind(this)} onKeyUp={(e) => this.onKeyUp(e)} />
                     </div>
                     <div className="col-auto button-col">
                         <Link to={this.state.url} className="button" onClick={this.onClickSearch.bind(this)} >Create a music link</Link>
