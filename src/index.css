@@ -750,12 +750,11 @@ input[type=text]:focus {
   color: #89a4ae;
   opacity: 1; }
 
-.streaming-title {
-  text-align: right; }
-  .streaming-title img {
-    height: 48px; }
-  .streaming-title.top {
-    margin-top: 16px; }
+.streaming-title img {
+  height: 48px; }
+
+.streaming-title.top {
+  margin-top: 16px; }
 
 .loading {
   font-size: 16px;
