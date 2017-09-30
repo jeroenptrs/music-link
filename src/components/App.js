@@ -24,7 +24,7 @@ class App extends Component {
                   </div>
                   <div className="ctr-m-1 mscli-backdrop-container">
                       <div className="mscli-backdrop">
-                        <img src={pj.ghprepo + "/assets/background.png"} alt="msc.li - Music Link" />
+                        <img src={"/" + pj.ghprepo + "/assets/background.png"} alt="msc.li - Music Link" />
                       </div>
                   </div>
               </div>
