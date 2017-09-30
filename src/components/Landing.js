@@ -72,13 +72,13 @@ class Landing extends Component {
                     <div className="col-s-2 error-col">
                         {this.state.err !== false ? <p>{this.state.err}</p> : <p>&nbsp;</p>}
                     </div>
-                    <div className="col-s-1">
+                    <div className="col-m-1">
                         <input type="text" id="artistname" name="artist" placeholder="Artist"
                                value={this.state.artist}
                                onChange={this.onTypeArtist.bind(this)}
                                onKeyUp={(e) => this.onKeyUpArtist(e)} />
                     </div>
-                    <div className="col-s-1">
+                    <div className="col-m-1">
                         <input type="text" id="albumname" name="album" placeholder="Album"
                                ref={(input) => { this.albumInput = input; }}
                                value={this.state.album}

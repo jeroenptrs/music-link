@@ -94,3 +94,7 @@ function spotifyApi(artist, album, context){
         }).catch((err) => { reject(err); });
     });
 }
+
+//TODO: Deezer API
+
+//TODO: Apple Music/iTunes API

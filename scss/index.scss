@@ -68,6 +68,14 @@ body{
 .grid{
     margin-top: 16px;
     @include grid($_grid);
+    .col-m-1 + .col-m-1{
+      margin-top: 16px;
+
+      @media(min-width: $m){
+        margin-top: 0px;
+      }
+    }
+
 }
 
 .album-grid{

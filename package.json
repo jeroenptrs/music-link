@@ -14,7 +14,7 @@
     "react-visibility-sensor": "^3.10.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run webtask && npm run compile-scss && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
