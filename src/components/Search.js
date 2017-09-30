@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import * as pj from '../../package.json';
 import Album from './Album';
+import VisibilitySensor from 'react-visibility-sensor'
 
 class Search extends Component {
     constructor(props){
@@ -9,8 +10,11 @@ class Search extends Component {
         this.state = {
             spotify: false,
             deezer: false,
-            apple: false
+            apple: false,
+            scrolltip: false
         };
+
+        this.handleScrollTip = this.handleScrollTip.bind(this);
     }
 
     componentWillMount(){
@@ -40,6 +44,13 @@ class Search extends Component {
             this.setState(state);
         }
         catch(error){ console.log(error); }
+    }
+
+    handleScrollTip(v){
+        if(v)
+            this.setState({scrolltip: false});
+        else
+            this.setState({scrolltip: true});
     }
 
     render(){
@@ -77,14 +88,23 @@ class Search extends Component {
                 </div>
                 <div className="col-s-2 streaming-title">
                     <img src={"/assets/applemusic_logo.png"} alt="Apple Music" />
-                    <hr/>
+                    <VisibilitySensor onChange={this.handleScrollTip}>
+                        <hr/>
+                    </VisibilitySensor>
                 </div>
+
                 <div className="col-s-2">
                     {apple !== false ?
                         <p className="loading">Apple Music coming soon!</p>
                         :
                         <p className="loading">Loading Apple Music results...</p>
                     }
+                </div>
+                <div className={this.state.scrolltip ? "scrolltip-container" : "scrolltip-container hidden"}>
+                    <span className="scrolltip">
+                        <span>SCROLL DOWN FOR MORE RESULTS</span>
+                        <i className="material-icons">&#xE313;</i>
+                    </span>
                 </div>
             </div>
         )

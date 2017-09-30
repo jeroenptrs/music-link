@@ -12,7 +12,8 @@ class Landing extends Component {
             err: false
         };
 
-        this.onKeyUp = this.onKeyUp.bind(this);
+        this.onKeyUpArtist = this.onKeyUpArtist.bind(this);
+        this.onKeyUpAlbum = this.onKeyUpAlbum.bind(this);
     }
 
     onTypeArtist(event) {
@@ -47,7 +48,11 @@ class Landing extends Component {
         else this.setState({err: false});
     }
 
-    onKeyUp(e){
+    onKeyUpArtist(e){
+        if(e.key === 'Enter') this.albumInput.focus();
+    }
+
+    onKeyUpAlbum(e){
         if(e.key === 'Enter' && (this.state.artist.length > 0 && this.state.album.length > 0)){
             this.props.history.push(this.state.url);
         } else if(e.key === 'Enter') this.onClickSearch();
@@ -68,10 +73,17 @@ class Landing extends Component {
                         {this.state.err !== false ? <p>{this.state.err}</p> : <p>&nbsp;</p>}
                     </div>
                     <div className="col-s-1">
-                        <input type="text" id="artistname" name="artist" placeholder="Artist" value={this.state.artist} onChange={this.onTypeArtist.bind(this)} onKeyUp={(e) => this.onKeyUp(e)} />
+                        <input type="text" id="artistname" name="artist" placeholder="Artist"
+                               value={this.state.artist}
+                               onChange={this.onTypeArtist.bind(this)}
+                               onKeyUp={(e) => this.onKeyUpArtist(e)} />
                     </div>
                     <div className="col-s-1">
-                        <input type="text" id="albumname" name="album" placeholder="Album" value={this.state.album} onChange={this.onTypeAlbum.bind(this)} onKeyUp={(e) => this.onKeyUp(e)} />
+                        <input type="text" id="albumname" name="album" placeholder="Album"
+                               ref={(input) => { this.albumInput = input; }}
+                               value={this.state.album}
+                               onChange={this.onTypeAlbum.bind(this)}
+                               onKeyUp={(e) => this.onKeyUpAlbum(e)} />
                     </div>
                     <div className="col-auto button-col">
                         <Link to={this.state.url} className="button" onClick={this.onClickSearch.bind(this)} >Create a music link</Link>

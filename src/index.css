@@ -641,11 +641,12 @@ body {
       width: calc(100% - 16px); } }
 
 .container {
+  padding-bottom: calc(4.5%);
   margin: 0 auto;
   width: 82%; }
 
 .info-text {
-  padding-top: calc(4.5%); }
+  padding-top: calc(6%); }
 
 p {
   color: #89a4ae;
@@ -724,8 +725,8 @@ input[type=text] {
   color: #3C485E;
   font-size: 24px;
   font-family: 'Merriweather', serif;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out; }
+  -webkit-transition: box-shadow 0.5s ease-in-out;
+  transition: box-shadow 0.5s ease-in-out; }
 
 input[type=text]:focus {
   border: 2px solid #55717c;
@@ -809,7 +810,57 @@ hr {
       [class^="album-s-"] .listen-button-wrapper .listen-button:active {
         background-color: #1B1D1C !important; }
 
+.scrolltip-container {
+  position: fixed;
+  bottom: 0;
+  left: calc(50% - 138px);
+  -webkit-transition: transform .5s ease, box-shadow .5s ease;
+  transition: transform .5s ease, box-shadow .5s ease;
+  z-index: 99; }
+  @media (min-width: 768px) {
+    .scrolltip-container {
+      left: calc(25% - 138px); } }
+  .scrolltip-container:hover {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); }
+  .scrolltip-container .scrolltip {
+    min-width: 260px;
+    width: 260px;
+    max-width: 260px;
+    padding: 8px 8px 4px;
+    border: none;
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #1B1D1C;
+    color: #f8f8f8;
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none; }
+    .scrolltip-container .scrolltip span {
+      line-height: 20px;
+      font-size: 14px;
+      font-family: 'Lato', sans-serif; }
+    .scrolltip-container .scrolltip .material-icons {
+      float: right;
+      margin-left: 4px;
+      font-size: 20px;
+      line-height: 20px;
+      display: inline-block; }
+  .scrolltip-container.hidden {
+    transform: translateY(38px); }
+
 @media (min-width: 1024px) {
+  p, .button, input[type=text] {
+    font-size: 28px; }
+  .button {
+    margin-top: 28px; }
+  .error-col {
+    margin-top: 16px; }
+    .error-col p {
+      font-size: 14.5px; } }
+
+@media (min-width: 1440px) {
   p, .button, input[type=text] {
     font-size: 32px; }
   .button {

@@ -72,11 +72,12 @@ body{
 }
 
 .container{
+    padding-bottom: calc(4.5%);
     @include container($_container);
 }
 
 .info-text{
-  padding-top: calc(4.5%);
+  padding-top: calc(6%);
 }
 
 p{
@@ -177,8 +178,8 @@ input[type=text] {
   font-size: 24px;
   font-family: 'Merriweather', serif;
 
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: box-shadow 0.5s ease-in-out;
+  transition: box-shadow 0.5s ease-in-out;
 }
 
 input[type=text]:focus {
@@ -283,7 +284,82 @@ hr{
   }
 }
 
+.scrolltip-container{
+  position: fixed;
+  bottom: 0;
+  left: calc(50% - 138px);
+  @media(min-width: 768px){
+    left: calc(25% - 138px);
+  }
+
+  -webkit-transition: transform .5s ease, box-shadow .5s ease;
+  transition: transform .5s ease, box-shadow .5s ease;
+
+  &:hover {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .scrolltip{
+    min-width: 260px;
+    width: 260px;
+    max-width: 260px;
+
+    padding: 8px 8px 4px;
+    border: none;
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    background-color: color-claim(31, "bg");
+    color: #f8f8f8;
+
+    display: inline-block;
+
+
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+
+    span {
+      line-height: 20px;
+      font-size: 14px;
+      font-family: 'Lato', sans-serif;
+    }
+
+    .material-icons {
+      float: right;
+      margin-left: 4px;
+      font-size: 20px;
+      line-height: 20px;
+      display: inline-block;
+    }
+  }
+
+  z-index: 99;
+
+  &.hidden{ transform: translateY(38px) }
+}
+
 @media(min-width: $l){
+
+  p, .button, input[type=text]{
+    font-size: 28px;
+  }
+
+  .button{
+    margin-top: 28px;
+  }
+
+  .error-col{
+    p{
+      font-size: 14.5px;
+    }
+
+    margin-top: 16px;
+  }
+}
+
+@media(min-width: $xl){
   p, .button, input[type=text]{
     font-size: 32px;
   }
