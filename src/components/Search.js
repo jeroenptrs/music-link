@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import * as pj from '../../package.json';
 import Album from './Album';
-import VisibilitySensor from 'react-visibility-sensor'
+import VisibilitySensor from 'react-visibility-sensor';
+import {Element, scroller} from 'react-scroll';
 
 class Search extends Component {
     constructor(props){
@@ -15,6 +16,7 @@ class Search extends Component {
         };
 
         this.handleScrollTip = this.handleScrollTip.bind(this);
+        this.handleScrollTipClick = this.handleScrollTipClick.bind(this);
     }
 
     componentWillMount(){
@@ -46,11 +48,26 @@ class Search extends Component {
         catch(error){ console.log(error); }
     }
 
-    handleScrollTip(v){
-        if(v)
-            this.setState({scrolltip: false});
-        else
-            this.setState({scrolltip: true});
+    handleScrollTip(v, type){
+        switch(type){
+            case 'deezer':
+                if(v) this.setState({scrolltip: 'apple'});
+                else if(!v && this.state.scrolltip !== 'deezer') this.setState({scrolltip: 'deezer'});
+                break;
+            case 'apple':
+                if(v) this.setState({scrolltip: false});
+                else if(!v && this.state.scrolltip !== 'apple') this.setState({scrolltip: 'apple'});
+                break;
+        }
+    }
+
+    handleScrollTipClick(){
+        scroller.scrollTo(this.state.scrolltip, {
+            duration: 1500,
+            delay: 100,
+            smooth: true,
+            offset: -10
+        });
     }
 
     render(){
@@ -64,7 +81,7 @@ class Search extends Component {
         //TODO: proper loading components!
         return(
             <div className="grid">
-                <div className="col-s-2 streaming-title top">
+                <div className="col-s-2 streaming-title">
                     <img src={"/assets/spotify_logo.png"} alt="Spotify" />
                     <hr/>
                 </div>
@@ -75,10 +92,12 @@ class Search extends Component {
                         <p className="loading">Loading Spotify results...</p>
                     }
                 </div>
-                <div className="col-s-2 streaming-title">
-                    <img src={"/assets/deezer_logo.png"} alt="Deezer" />
-                    <hr/>
-                </div>
+                <VisibilitySensor onChange={(v) => this.handleScrollTip(v, "deezer")}>
+                    <div className="col-s-2 streaming-title">
+                        <Element name="deezer"><img src={"/assets/deezer_logo.png"} alt="Deezer" /></Element>
+                        <hr/>
+                    </div>
+                </VisibilitySensor>
                 <div className="col-s-2">
                     {deezer !== false ?
                         <p className="loading">Deezer coming soon!</p>
@@ -86,12 +105,12 @@ class Search extends Component {
                         <p className="loading">Loading Deezer results...</p>
                     }
                 </div>
-                <div className="col-s-2 streaming-title">
-                    <img src={"/assets/applemusic_logo.png"} alt="Apple Music" />
-                    <VisibilitySensor onChange={this.handleScrollTip}>
+                <VisibilitySensor onChange={(v) => this.handleScrollTip(v, "apple")}>
+                    <div className="col-s-2 streaming-title">
+                        <Element name="apple"><img src={"/assets/applemusic_logo.png"} alt="Apple Music" /></Element>
                         <hr/>
-                    </VisibilitySensor>
-                </div>
+                    </div>
+                </VisibilitySensor>
 
                 <div className="col-s-2">
                     {apple !== false ?
@@ -100,7 +119,8 @@ class Search extends Component {
                         <p className="loading">Loading Apple Music results...</p>
                     }
                 </div>
-                <div className={this.state.scrolltip ? "scrolltip-container" : "scrolltip-container hidden"}>
+                <div className={this.state.scrolltip ? "scrolltip-container" : "scrolltip-container hidden"}
+                     onClick={() => this.handleScrollTipClick()} >
                     <span className="scrolltip">
                         <span>SCROLL DOWN FOR MORE RESULTS</span>
                         <i className="material-icons">&#xE313;</i>
@@ -116,7 +136,7 @@ class Search extends Component {
                 <Album album={album} key={album.id} />
             );
         }
-        //TODO: Could not find an album on this service reponse.
+        //TODO: Could not find an album on this service response.
         else { return (<div></div>); }
     }
 

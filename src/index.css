@@ -558,7 +558,7 @@ body {
       width: calc(100% - 32px); } }
 
 .album-grid {
-  margin-top: 32px;
+  margin-top: 16px;
   margin-left: -16px;
   display: flex;
   flex-direction: row;
@@ -751,11 +751,10 @@ input[type=text]:focus {
   color: #89a4ae;
   opacity: 1; }
 
-.streaming-title img {
-  height: 48px; }
-
-.streaming-title.top {
+.streaming-title {
   margin-top: 16px; }
+  .streaming-title img {
+    height: 48px; }
 
 .loading {
   font-size: 16px;
@@ -770,7 +769,10 @@ hr {
   background-image: linear-gradient(to right, #C7C6C4, #1B1D1C, #C7C6C4); }
 
 [class^="album-s-"] {
-  margin-bottom: 48px; }
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column; }
   [class^="album-s-"] img {
     width: 100%;
     display: block;
@@ -823,6 +825,7 @@ hr {
   .scrolltip-container:hover {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); }
   .scrolltip-container .scrolltip {
+    cursor: pointer;
     min-width: 260px;
     width: 260px;
     max-width: 260px;
@@ -831,7 +834,7 @@ hr {
     border-radius: 4px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    background-color: #1B1D1C;
+    background-color: #3C485E;
     color: #f8f8f8;
     display: inline-block;
     font-weight: bold;

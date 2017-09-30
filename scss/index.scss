@@ -67,7 +67,7 @@ body{
 }
 
 .album-grid{
-  margin-top: 32px;
+  margin-top: 16px;
   @include grid($_album_grid);
 }
 
@@ -207,10 +207,7 @@ input[type=text]:focus {
   img{
     height: 48px;
   }
-
-  &.top{
-    margin-top: 16px;
-  }
+  margin-top: 16px;
 }
 
 .loading{
@@ -230,6 +227,10 @@ hr{
 
 [class^="album-s-"]{
   margin-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
   img{
     width: 100%;
     display: block;
@@ -249,6 +250,7 @@ hr{
   .listen-button-wrapper {
     width: 100%;
     text-align: center;
+
 
     .listen-button {
       cursor: pointer;
@@ -300,6 +302,8 @@ hr{
   }
 
   .scrolltip{
+    cursor: pointer;
+
     min-width: 260px;
     width: 260px;
     max-width: 260px;
@@ -310,7 +314,7 @@ hr{
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 
-    background-color: color-claim(31, "bg");
+    background-color: color-claim(40, "bg");
     color: #f8f8f8;
 
     display: inline-block;

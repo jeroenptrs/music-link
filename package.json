@@ -1,6 +1,6 @@
 {
   "name": "mscli",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "dependencies": {
     "color-claim-sass": "^1.1.0",
@@ -10,6 +10,7 @@
     "react-dom": "^15.6.1",
     "react-router-dom": "next",
     "react-scripts": "1.0.13",
+    "react-scroll": "^1.5.4",
     "react-visibility-sensor": "^3.10.1"
   },
   "scripts": {
