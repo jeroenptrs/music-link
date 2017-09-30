@@ -14,6 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-ghp": "node ghp/build.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "compile-scss": "node-sass --include-path scss scss/index.scss src/index.css",
