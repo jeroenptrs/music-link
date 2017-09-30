@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Landing from './Landing';
 import Search from './Search';
 import Catch from './Catch';
+import pj from '../../package.json';
 
 class App extends Component {
   render() {
@@ -23,7 +24,7 @@ class App extends Component {
                   </div>
                   <div className="ctr-m-1 mscli-backdrop-container">
                       <div className="mscli-backdrop">
-                        <img src="/assets/background.png" alt="msc.li - Music Link" />
+                        <img src={pj.ghprepo + "/assets/background.png"} alt="msc.li - Music Link" />
                       </div>
                   </div>
               </div>

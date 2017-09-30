@@ -54,7 +54,7 @@ class Search extends Component {
         return(
             <div className="grid">
                 <div className="col-s-2 streaming-title top">
-                    <img src="/assets/spotify_logo.png" alt="Spotify" />
+                    <img src={pj.ghprepo + "/assets/spotify_logo.png"} alt="Spotify" />
                     <hr/>
                 </div>
                 <div className="col-s-2">
@@ -65,7 +65,7 @@ class Search extends Component {
                     }
                 </div>
                 <div className="col-s-2 streaming-title">
-                    <img src="/assets/deezer_logo.png" alt="Deezer" />
+                    <img src={pj.ghprepo + "/assets/deezer_logo.png"} alt="Deezer" />
                     <hr/>
                 </div>
                 <div className="col-s-2">
@@ -76,7 +76,7 @@ class Search extends Component {
                     }
                 </div>
                 <div className="col-s-2 streaming-title">
-                    <img src="/assets/applemusic_logo.png" alt="Apple Music" />
+                    <img src={pj.ghprepo + "/assets/applemusic_logo.png"} alt="Apple Music" />
                     <hr/>
                 </div>
                 <div className="col-s-2">
