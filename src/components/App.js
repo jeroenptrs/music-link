@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import { Picture } from 'react-responsive-picture';
 import Landing from './Landing';
 import Search from './Search';
 import Catch from './Catch';
