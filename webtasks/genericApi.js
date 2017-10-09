@@ -112,7 +112,6 @@ function deezerApi(artist, album) {
       .then((response) => {
         var r = JSON.parse(response).data;
         r.forEach((deezer) => {
-          console.log(deezer);
           if (!deezerIds[deezer.id]) {
             deezerAlbums.push({
               id: deezer.id,

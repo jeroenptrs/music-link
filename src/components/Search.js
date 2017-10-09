@@ -75,19 +75,18 @@ class Search extends Component {
         <Album album={album} key={album.id} />
       ));
     }
-    //TODO: Could not find an album on this service response.
+    // TODO: Could not find an album on this service response.
     return (<div></div>);
   }
 
   render() {
     const { spotify, deezer, apple } = this.state;
-    let formattedSpotify, formattedDeezer, formattedAppleMusic, formattedItunes;
 
-    formattedSpotify = this.renderAlbums(spotify);
-    formattedDeezer = this.renderAlbums(deezer);
-    formattedAppleMusic = this.renderAlbums(apple);
+    const formattedSpotify = this.renderAlbums(spotify);
+    const formattedDeezer = this.renderAlbums(deezer);
+    // const formattedAppleMusic = this.renderAlbums(apple);
 
-    //TODO: proper loading components!
+    // TODO: proper loading components!
     return (
       <div className="grid">
         <div className="col-s-2 streaming-title">
@@ -114,7 +113,7 @@ class Search extends Component {
             <p className="loading">Loading Deezer results...</p>
           }
         </div>
-        <VisibilitySensor onChange={(v) => this.handleScrollTip(v, 'apple')}>
+        <VisibilitySensor onChange={(v) => { this.handleScrollTip(v, 'apple'); }}>
           <div className="col-s-2 streaming-title">
             <Element name="apple"><img src={'/assets/applemusic_logo.png'} alt="Apple Music" /></Element>
             <hr />
