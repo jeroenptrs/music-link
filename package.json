@@ -1,6 +1,6 @@
 {
   "name": "mscli",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": true,
   "dependencies": {
     "color-claim-sass": "^1.1.0",
@@ -23,5 +23,12 @@
     "webtask": "wt update genericApi ./webtasks/genericApi.js",
     "watch-webtask": "nodemon --watch webtasks -x \"npm run webtask\""
   },
-  "genericApi": "https://wt-d16d4ed13fb086ca4bb3643449c8f6c4-0.run.webtask.io/"
+  "genericApi": "https://wt-d16d4ed13fb086ca4bb3643449c8f6c4-0.run.webtask.io/",
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.4.0"
+  }
 }

@@ -68,10 +68,10 @@ body{
 .grid{
     margin-top: 16px;
     @include grid($_grid);
-    .col-m-1 + .col-m-1{
+    .col-l-1 + .col-l-1{
       margin-top: 16px;
-
-      @media(min-width: $m){
+      margin-bottom: 0;
+      @media(min-width: $l){
         margin-top: 0px;
       }
     }

@@ -559,10 +559,11 @@ body {
       width: calc(50% - 32px); }
     .grid [class^="col"][class*="-xl-2"] {
       width: calc(100% - 32px); } }
-  .grid .col-m-1 + .col-m-1 {
-    margin-top: 16px; }
-    @media (min-width: 480px) {
-      .grid .col-m-1 + .col-m-1 {
+  .grid .col-l-1 + .col-l-1 {
+    margin-top: 16px;
+    margin-bottom: 0; }
+    @media (min-width: 1024px) {
+      .grid .col-l-1 + .col-l-1 {
         margin-top: 0px; } }
 
 .album-grid {
