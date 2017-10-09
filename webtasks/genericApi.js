@@ -106,23 +106,24 @@ function deezerApi(artist, album) {
   var i,
     deezerAlbums = [],
     deezerIds = {};
-  const url = 'https://api.deezer.com/search/?q=artist:"' + artist + '" album:' + album + '"&type=album';
+  const url = 'https://api.deezer.com/search/album?q=' + artist + ' ' + album + '"&type=album&strict=on';
   return new Promise((resolve, reject) => {
     rp(url)
       .then((response) => {
         var r = JSON.parse(response).data;
         r.forEach((deezer) => {
-          if (!deezerIds[deezer.album.id]) {
+          console.log(deezer);
+          if (!deezerIds[deezer.id]) {
             deezerAlbums.push({
-              id: deezer.album.id,
-              name: deezer.album.title,
+              id: deezer.id,
+              name: deezer.title,
               artist: {
                 name: deezer.artist.name,
               },
-              image: deezer.album.cover_xl,
-              url: 'https://deezer.com/album/' + deezer.album.id,
+              image: deezer.cover_xl,
+              url: 'https://deezer.com/album/' + deezer.id,
             });
-            deezerIds[deezer.album.id] = true;
+            deezerIds[deezer.id] = true;
           }
         });
         resolve(deezerAlbums);
