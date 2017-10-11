@@ -23,9 +23,11 @@ body{
   background-color: #FFF;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
 
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+
+  z-index: 99;
 
   .title-link {
     text-decoration: none;
@@ -354,7 +356,7 @@ hr{
 
   z-index: 99;
 
-  &.hidden{ transform: translateY(38px) }
+  &.hidden{ transform: translateY(138px) }
   &:hover {
     .scrolltip{ background-color: darken(color-claim(40, "bg"), 10%); }
   }

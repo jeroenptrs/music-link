@@ -12,21 +12,20 @@ class Search extends Component {
       spotify: false,
       deezer: false,
       apple: false,
-      scrolltip: false
+      scrolltip: false,
     };
-
     this.handleScrollTip = this.handleScrollTip.bind(this);
     this.handleScrollTipClick = this.handleScrollTipClick.bind(this);
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.fetchAPI('spotify');
     this.fetchAPI('deezer');
     this.fetchAPI('apple');
   }
 
   async fetchAPI(type) {
-    let state = this.state;
+    let state = {};
 
     try {
       let r = await fetch(pj.genericApi + 'genericApi', {
@@ -47,17 +46,9 @@ class Search extends Component {
     } catch (error) { console.log(error); }
   }
 
-  handleScrollTip(v, type){
-    switch (type) {
-      case 'deezer':
-        if (v) this.setState({ scrolltip: 'apple' });
-        else if (!v && this.state.scrolltip !== 'deezer') this.setState({ scrolltip: 'deezer' });
-        break;
-      case 'apple':
-        if (v) this.setState({ scrolltip: false });
-        else if (!v && this.state.scrolltip !== 'apple') this.setState({ scrolltip: 'apple' });
-        break;
-    }
+  handleScrollTip(v) {
+    if (v) this.setState({ scrolltip: false });
+    else this.setState({ scrolltip: 'apple' });
   }
 
   handleScrollTipClick() {
@@ -71,7 +62,7 @@ class Search extends Component {
 
   renderAlbums(albums) {
     if (albums) {
-      return albums.map((album) => (
+      return albums.map(album => (
         <Album album={album} key={album.id} />
       ));
     }
@@ -80,12 +71,10 @@ class Search extends Component {
   }
 
   render() {
-    const { spotify, deezer, apple } = this.state;
-
-    const formattedSpotify = this.renderAlbums(spotify);
-    const formattedDeezer = this.renderAlbums(deezer);
-    // const formattedAppleMusic = this.renderAlbums(apple);
-
+    const { spotify, deezer, apple } = this.state,
+      formattedSpotify = this.renderAlbums(spotify),
+      formattedDeezer = this.renderAlbums(deezer),
+      formattedAppleMusic = this.renderAlbums(apple);
     // TODO: proper loading components!
     return (
       <div className="grid">
@@ -100,12 +89,10 @@ class Search extends Component {
             <p className="loading">Loading Spotify results...</p>
           }
         </div>
-        <VisibilitySensor onChange={(v) => { this.handleScrollTip(v, 'deezer'); }}>
-          <div className="col-s-2 streaming-title">
-            <Element name="deezer"><img src={'/assets/deezer_logo.png'} alt="Deezer" /></Element>
-            <hr />
-          </div>
-        </VisibilitySensor>
+        <div className="col-s-2 streaming-title">
+          <img src={'/assets/deezer_logo.png'} alt="Deezer" />
+          <hr />
+        </div>
         <div className="col-s-2">
           {deezer !== false ?
             <div className="album-grid">{formattedDeezer}</div>
@@ -113,23 +100,22 @@ class Search extends Component {
             <p className="loading">Loading Deezer results...</p>
           }
         </div>
-        <VisibilitySensor onChange={(v) => { this.handleScrollTip(v, 'apple'); }}>
-          <div className="col-s-2 streaming-title">
-            <Element name="apple"><img src={'/assets/applemusic_logo.png'} alt="Apple Music" /></Element>
-            <hr />
-          </div>
-        </VisibilitySensor>
-
+        <div className="col-s-2 streaming-title">
+          <img src={'/assets/applemusic_logo.png'} alt="Apple Music" />
+          <hr />
+        </div>
         <div className="col-s-2">
           {apple !== false ?
-            <p className="loading">Apple Music coming soon!</p>
+            <div className="album-grid">{formattedAppleMusic}</div>
             :
             <p className="loading">Loading Apple Music results...</p>
           }
+          <VisibilitySensor onChange={(v) => { this.handleScrollTip(v); }}>
+            <div id="bottom" />
+          </VisibilitySensor>
         </div>
         <div
           className={this.state.scrolltip ? 'scrolltip-container' : 'scrolltip-container hidden'}
-          onClick={() => this.handleScrollTipClick()}
         >
           <span className="scrolltip">
             <span>SCROLL DOWN FOR MORE RESULTS</span>

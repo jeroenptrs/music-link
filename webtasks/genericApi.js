@@ -37,7 +37,15 @@ module.exports = function(context, cb) {
         });
         break;
       case 'apple':
-        cb(null, { err: 'This API type is not yet supported.' });
+        return new Promise((resolve, reject) => {
+          appleApi(context.body.artist, context.body.album)
+            .then((result) => {
+              resolve(cb(null, { apple: result }));
+            })
+            .catch((err) => {
+              reject(cb(err));
+            });
+        });
         break;
       default:
         cb({ err: 'Unknown API type.' });
@@ -131,4 +139,30 @@ function deezerApi(artist, album) {
   });
 }
 
-// TODO: Apple Music/iTunes API
+function appleApi(artist, album) {
+  var i,
+    appleAlbums = [];
+  const url = 'https://itunes.apple.com/search?entity=album&media=music&term=' + artist + '+' + album;
+  return new Promise((resolve, reject) => {
+    rp(url)
+      .then((response) => {
+        var r = JSON.parse(response).results;
+        r.forEach((apple) => {
+          console.log(apple);
+          const enlarge = apple.artworkUrl100.replace('100x100bb.jpg', '1000x1000bb.jpg');
+          const appleMusicUrl = apple.collectionViewUrl.replace('https://itunes.apple.com', 'https://geo.itunes.apple.com') + '&app=music';
+          appleAlbums.push({
+            id: apple.collectionId,
+            name: apple.collectionName,
+            artist: {
+              name: apple.artistName,
+            },
+            image: enlarge,
+            url: appleMusicUrl,
+          });
+        });
+        resolve(appleAlbums);
+      })
+      .catch((err) => { reject(err); });
+  });
+}

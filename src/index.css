@@ -437,9 +437,10 @@ body {
   max-height: 48px;
   background-color: #FFF;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0; }
+  left: 0;
+  z-index: 99; }
   .header .title-link {
     text-decoration: none;
     height: 48px;
@@ -861,7 +862,7 @@ hr {
       line-height: 20px;
       display: inline-block; }
   .scrolltip-container.hidden {
-    transform: translateY(38px); }
+    transform: translateY(138px); }
   .scrolltip-container:hover .scrolltip {
     background-color: #28303f; }
 
