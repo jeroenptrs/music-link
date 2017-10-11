@@ -140,15 +140,13 @@ function deezerApi(artist, album) {
 }
 
 function appleApi(artist, album) {
-  var i,
-    appleAlbums = [];
+  var appleAlbums = [];
   const url = 'https://itunes.apple.com/search?entity=album&media=music&term=' + artist + '+' + album;
   return new Promise((resolve, reject) => {
     rp(url)
       .then((response) => {
         var r = JSON.parse(response).results;
         r.forEach((apple) => {
-          console.log(apple);
           const enlarge = apple.artworkUrl100.replace('100x100bb.jpg', '1000x1000bb.jpg');
           const appleMusicUrl = apple.collectionViewUrl.replace('https://itunes.apple.com', 'https://geo.itunes.apple.com') + '&app=music';
           appleAlbums.push({

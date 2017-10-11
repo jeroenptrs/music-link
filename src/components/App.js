@@ -6,6 +6,7 @@ import Catch from './Catch';
 
 class App extends Component {
   // TODO: testing on all browsers for errors
+  // TODO: add Evance footer
   render() {
     return (
       <Router>

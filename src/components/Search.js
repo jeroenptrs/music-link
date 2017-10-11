@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import * as pj from '../../package.json';
-import Album from './Album';
 import VisibilitySensor from 'react-visibility-sensor';
-import {Element, scroller} from 'react-scroll';
+import { Element, scroller } from 'react-scroll';
+import RenderAlbums from './_search/_renderAlbums';
+import fetchAPI from './_search/_fetchApi';
 
 class Search extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       spotify: false,
@@ -19,35 +19,17 @@ class Search extends Component {
   }
 
   componentWillMount() {
-    this.fetchAPI('spotify');
-    this.fetchAPI('deezer');
-    this.fetchAPI('apple');
-  }
-
-  async fetchAPI(type) {
-    let state = {};
-
-    try {
-      let r = await fetch(pj.genericApi + 'genericApi', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          artist: this.props.match.params.artist,
-          album: this.props.match.params.album,
-          type: type,
-        }),
-      });
-
-      r = await r.json();
-      state[type] = r[type];
-      this.setState(state);
-    } catch (error) { console.log(error); }
+    fetchAPI('spotify', this);
+    fetchAPI('deezer', this);
+    fetchAPI('apple', this);
   }
 
   handleScrollTip(v) {
-    if (v) this.setState({ scrolltip: false });
+    const { spotify, deezer, apple } = this.state;
+    if (v ||
+      (!deezer && !spotify && !apple) ||
+      (deezer.length === 0 && spotify.length === 0 && apple.length === 0)
+    ) this.setState({ scrolltip: false });
     else this.setState({ scrolltip: 'apple' });
   }
 
@@ -60,21 +42,8 @@ class Search extends Component {
     });
   }
 
-  renderAlbums(albums) {
-    if (albums) {
-      return albums.map(album => (
-        <Album album={album} key={album.id} />
-      ));
-    }
-    // TODO: Could not find an album on this service response.
-    return (<div></div>);
-  }
-
   render() {
-    const { spotify, deezer, apple } = this.state,
-      formattedSpotify = this.renderAlbums(spotify),
-      formattedDeezer = this.renderAlbums(deezer),
-      formattedAppleMusic = this.renderAlbums(apple);
+    const { spotify, deezer, apple } = this.state;
     // TODO: proper loading components!
     return (
       <div className="grid">
@@ -84,7 +53,7 @@ class Search extends Component {
         </div>
         <div className="col-s-2">
           {spotify !== false ?
-            <div className="album-grid">{formattedSpotify}</div>
+            <RenderAlbums albums={spotify} />
             :
             <p className="loading">Loading Spotify results...</p>
           }
@@ -95,7 +64,7 @@ class Search extends Component {
         </div>
         <div className="col-s-2">
           {deezer !== false ?
-            <div className="album-grid">{formattedDeezer}</div>
+            <RenderAlbums albums={deezer} />
             :
             <p className="loading">Loading Deezer results...</p>
           }
@@ -106,7 +75,7 @@ class Search extends Component {
         </div>
         <div className="col-s-2">
           {apple !== false ?
-            <div className="album-grid">{formattedAppleMusic}</div>
+            <RenderAlbums albums={apple} />
             :
             <p className="loading">Loading Apple Music results...</p>
           }
