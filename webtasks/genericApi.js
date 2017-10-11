@@ -1,58 +1,5 @@
 var rp = require('request-promise');
 
-/**
- * MAPPING ALBUMS
- * Per album is needed:
- * id: Album id (specific for each streaming service)
- * name: Album title/name
- * artist.name: Album artist name
- * image: Image url
- * url: Link to streaming URL
- * */
-
-module.exports = function(context, cb) {
-  // TODO: put promise around switch, filter out results that don't match artist and album name in extra function.
-
-  if ((context.body.type != null && context.body.artist != null && context.body.album != null) && (context.body.type.length > 0 && context.body.artist.length > 0 && context.body.album.length > 0)) {
-    switch (context.body.type) {
-      case 'spotify':
-        return new Promise((resolve, reject) => {
-          spotifyApi(context.body.artist, context.body.album, context)
-            .then((result) => {
-              resolve(cb(null, { spotify: result }));
-            })
-            .catch((err) => {
-              reject(cb(err));
-            });
-        });
-      case 'deezer':
-        return new Promise((resolve, reject) => {
-          deezerApi(context.body.artist, context.body.album)
-            .then((result) => {
-              resolve(cb(null, { deezer: result }));
-            })
-            .catch((err) => {
-              reject(cb(err));
-            });
-        });
-        break;
-      case 'apple':
-        return new Promise((resolve, reject) => {
-          appleApi(context.body.artist, context.body.album)
-            .then((result) => {
-              resolve(cb(null, { apple: result }));
-            })
-            .catch((err) => {
-              reject(cb(err));
-            });
-        });
-        break;
-      default:
-        cb({ err: 'Unknown API type.' });
-    }
-  } else cb({ err: 'Unknown API type.' });
-};
-
 function spotifyApi(artist, album, context){
   /** SPOTIFY API: Lessons learned.
    * May 29th: Spotify moved from open API to requiring authentication for every request.
@@ -66,12 +13,12 @@ function spotifyApi(artist, album, context){
    */
 
   var url = 'https://api.spotify.com/v1/search?q=artist:"' + artist + '"+album:"' + album + '"&type=album',
-    spotify_id = context.secrets.SPOTIFY_CLIENT_ID,
-    spotify_secret = context.secrets.SPOTIFY_CLIENT_SECRET,
-    encodedString = new Buffer(spotify_id + ':' + spotify_secret).toString('base64');
+    spotifyId = context.secrets.SPOTIFY_CLIENT_ID,
+    spotifySecret = context.secrets.SPOTIFY_CLIENT_SECRET,
+    encodedString = new Buffer(spotifyId + ':' + spotifySecret).toString('base64');
 
   return new Promise((resolve, reject) => {
-    var options = {
+    var authOptions = {
       method: 'POST',
       uri: 'https://accounts.spotify.com/api/token',
       body: 'grant_type=client_credentials',
@@ -82,7 +29,7 @@ function spotifyApi(artist, album, context){
       json: true,
     };
 
-    rp(options).then((r) => {
+    rp(authOptions).then((r) => {
       var token = 'Bearer ' + r.access_token,
         options = {
           method: 'GET',
@@ -111,8 +58,7 @@ function spotifyApi(artist, album, context){
 }
 
 function deezerApi(artist, album) {
-  var i,
-    deezerAlbums = [],
+  var deezerAlbums = [],
     deezerIds = {};
   const url = 'https://api.deezer.com/search/album?q=' + artist + ' ' + album + '"&type=album&strict=on';
   return new Promise((resolve, reject) => {
@@ -164,3 +110,62 @@ function appleApi(artist, album) {
       .catch((err) => { reject(err); });
   });
 }
+
+/**
+ * MAPPING ALBUMS
+ * Per album is needed:
+ * id: Album id (specific for each streaming service)
+ * name: Album title/name
+ * artist.name: Album artist name
+ * image: Image url
+ * url: Link to streaming URL
+ * */
+
+module.exports = function(context, cb) {
+  // TODO: filter out results that don't match artist and album name in extra function.
+
+  if (
+    (
+      context.body.type != null &&
+      context.body.artist != null &&
+      context.body.album != null
+    ) && (
+      context.body.type.length > 0 &&
+      context.body.artist.length > 0 &&
+      context.body.album.length > 0)
+  ) {
+    return new Promise((resolve, reject) => {
+      switch (context.body.type) {
+        case 'spotify':
+          spotifyApi(context.body.artist, context.body.album, context)
+            .then((result) => {
+              resolve(cb(null, {spotify: result}));
+            })
+            .catch((err) => {
+              reject(cb(err));
+            });
+          break;
+        case 'deezer':
+          deezerApi(context.body.artist, context.body.album)
+            .then((result) => {
+              resolve(cb(null, {deezer: result}));
+            })
+            .catch((err) => {
+              reject(cb(err));
+            });
+          break;
+        case 'apple':
+          appleApi(context.body.artist, context.body.album)
+            .then((result) => {
+              resolve(cb(null, {apple: result}));
+            })
+            .catch((err) => {
+              reject(cb(err));
+            });
+          break;
+        default:
+          reject(cb({ err: 'Unknown API type.' }));
+      }
+    });
+  } else cb({ err: 'Unknown API type.' });
+};
