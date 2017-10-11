@@ -836,9 +836,9 @@ hr {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); }
   .scrolltip-container .scrolltip {
     cursor: pointer;
-    min-width: 260px;
-    width: 260px;
-    max-width: 260px;
+    min-width: 268px;
+    width: 268px;
+    max-width: 268px;
     padding: 8px 8px 4px;
     border: none;
     border-top-left-radius: 4px;
@@ -862,7 +862,7 @@ hr {
       line-height: 20px;
       display: inline-block; }
   .scrolltip-container.hidden {
-    transform: translateY(138px); }
+    transform: translateY(142px); }
   .scrolltip-container:hover .scrolltip {
     background-color: #28303f; }
 

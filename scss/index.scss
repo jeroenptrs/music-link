@@ -318,9 +318,9 @@ hr{
   .scrolltip{
     cursor: pointer;
 
-    min-width: 260px;
-    width: 260px;
-    max-width: 260px;
+    min-width: 268px;
+    width: 268px;
+    max-width: 268px;
 
     padding: 8px 8px 4px;
     border: none;
@@ -356,7 +356,7 @@ hr{
 
   z-index: 99;
 
-  &.hidden{ transform: translateY(138px) }
+  &.hidden{ transform: translateY(142px) }
   &:hover {
     .scrolltip{ background-color: darken(color-claim(40, "bg"), 10%); }
   }
