@@ -5,6 +5,7 @@ import Search from './Search';
 import Catch from './Catch';
 
 class App extends Component {
+  // TODO: testing on all browsers for errors
   render() {
     return (
       <Router>

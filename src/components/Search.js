@@ -111,11 +111,12 @@ class Search extends Component {
             <p className="loading">Loading Apple Music results...</p>
           }
           <VisibilitySensor onChange={(v) => { this.handleScrollTip(v); }}>
-            <div id="bottom" />
+            <Element name="apple"><div id="bottom" /></Element>
           </VisibilitySensor>
         </div>
         <div
           className={this.state.scrolltip ? 'scrolltip-container' : 'scrolltip-container hidden'}
+          onClick={() => this.handleScrollTipClick()}
         >
           <span className="scrolltip">
             <span>SCROLL DOWN FOR MORE RESULTS</span>
