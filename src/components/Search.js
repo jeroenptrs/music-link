@@ -44,7 +44,6 @@ class Search extends Component {
 
   render() {
     const { spotify, deezer, apple } = this.state;
-    // TODO: proper loading components!
     return (
       <div className="grid">
         <div className="col-s-2 streaming-title">
@@ -55,7 +54,7 @@ class Search extends Component {
           {spotify !== false ?
             <RenderAlbums albums={spotify} />
             :
-            <p className="loading">Loading Spotify results...</p>
+            <div className="loader"><p className="loading">Loading Spotify results...</p></div>
           }
         </div>
         <div className="col-s-2 streaming-title">
@@ -66,7 +65,7 @@ class Search extends Component {
           {deezer !== false ?
             <RenderAlbums albums={deezer} />
             :
-            <p className="loading">Loading Deezer results...</p>
+            <div className="loader"><p className="loading">Loading Deezer results...</p></div>
           }
         </div>
         <div className="col-s-2 streaming-title">
@@ -77,7 +76,7 @@ class Search extends Component {
           {apple !== false ?
             <RenderAlbums albums={apple} />
             :
-            <p className="loading">Loading Apple Music results...</p>
+            <div className="loader"><p className="loading">Loading Apple Music results...</p></div>
           }
           <VisibilitySensor onChange={(v) => { this.handleScrollTip(v); }}>
             <Element name="apple"><div id="bottom" /></Element>
