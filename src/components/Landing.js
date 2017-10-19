@@ -62,10 +62,13 @@ class Landing extends Component {
     return (
       <div className="info-text">
         <p>
-          Do you want to share albums you love, but your friends don’t use the same streaming platform as you?<br />
+          Do you want to share albums you love with people across all streaming platforms?
+          <br />
         </p>
         <p>
-          This site creates a <span className="highlight">link</span> to several <span className="highlight">music</span> platforms such as Spotify, Deezer and Apple Music.
+          This site creates a <span className="highlight">link</span> to the following <span className="highlight">music</span> services:
+          <br />
+          Spotify, Deezer and Apple Music.
         </p>
 
         <div className="grid">

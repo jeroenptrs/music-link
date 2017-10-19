@@ -77,7 +77,6 @@ body{
         margin-top: 0px;
       }
     }
-
 }
 
 .album-grid{
@@ -417,6 +416,21 @@ hr{
   &.hidden{ transform: translateY(142px) }
   &:hover {
     .scrolltip{ background-color: darken(color-claim(40, "bg"), 10%); }
+  }
+}
+
+.footer{
+  align-content: center;
+  text-align: center;
+  margin-top: 16px;
+  p {
+    color: color-claim(40, "bg");
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    a, a:hover, a:focus, a:active {
+      color: #000;
+    }
   }
 }
 

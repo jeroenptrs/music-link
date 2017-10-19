@@ -24,6 +24,13 @@ class App extends Component {
                   <Route path="/:artist/:album" component={Search} />
                   <Route component={Catch} />
                 </Switch>
+                <div className="footer">
+                  <p>
+                    Made with ♥ by Evance
+                    <br />
+                    For info, contact <a href="mailto:jeroen.peeters@evance.be">jeroen.peeters@evance.be</a>
+                  </p>
+                </div>
               </div>
             </div>
             <div className="ctr-m-1 mscli-backdrop-container">
